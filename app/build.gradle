@@ -11,6 +11,8 @@ android {
         applicationId "com.escodro.alkaa"
         versionCode Releases.versionCode
         versionName Releases.versionName
+        testInstrumentationRunner = "io.qameta.allure.espresso.AllureAndroidRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
     }
 
     buildTypes {
@@ -42,6 +44,11 @@ android {
     }
 
     dynamicFeatures = [":features:tracker"]
+
+    testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        animationsDisabled = true
+    }
 
 }
 
@@ -83,4 +90,9 @@ dependencies {
     androidTestImplementation Deps.test.espresso.contrib
     androidTestImplementation Deps.test.junitExt
     androidTestImplementation Deps.test.uiAutomator
+    androidTestImplementation Deps.test.allure.common
+    androidTestImplementation Deps.test.allure.model
+    androidTestImplementation Deps.test.allure.espresso
+    androidTestImplementation Deps.test.kaspresso
+    androidTestUtil Deps.test.orchestrator
 }

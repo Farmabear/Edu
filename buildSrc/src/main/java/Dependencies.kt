@@ -33,6 +33,7 @@ object Versions {
     const val testRunner = "1.1.1"
     const val testRules = "1.1.1"
     const val testCore = "1.1.0"
+    const val orchestrator = "1.3.0"
     const val testMockk = "1.9.3"
     const val testEspressoCore = "3.1.1"
     const val testEspressoIntents = "3.1.1"
@@ -41,6 +42,8 @@ object Versions {
     const val testJunitExt = "1.1.0"
     const val testRoom = "2.1.0"
     const val testArch = "2.1.0"
+    const val allure = "2.0.3"
+    const val kaspresso = "1.1.0"
 
     const val buildGradle = "3.6.0"
 
@@ -59,6 +62,7 @@ object Deps {
     val test = TestDeps
     val quality = QualityDeps
     val gradle = GradleDeps
+    val allure = AllureDeps
 }
 
 object AndroidDeps {
@@ -111,6 +115,7 @@ object TestDeps {
     val runner = "androidx.test:runner:${Versions.testRunner}"
     val rules = "androidx.test:rules:${Versions.testRules}"
     val core = "androidx.test:core:${Versions.testCore}"
+    val orchestrator = "androidx.test:orchestrator:${Versions.orchestrator}"
     val uiAutomator = "androidx.test.uiautomator:uiautomator:${Versions.testUiAutomator}"
     val junitExt = "androidx.test.ext:junit:${Versions.testJunitExt}"
     val mockk = "io.mockk:mockk:${Versions.testMockk}"
@@ -118,6 +123,14 @@ object TestDeps {
     val arch = "androidx.arch.core:core-testing:${Versions.testArch}"
     val lifecycle = "androidx.arch.core:core-testing:${Versions.testArch}"
     val espresso = EspressoDeps
+    val allure = AllureDeps
+    val kaspresso = "com.kaspersky.android-components:kaspresso:${Versions.kaspresso}"
+}
+
+object AllureDeps {
+    val common = "io.qameta.allure:allure-android-commons:${Versions.allure}"
+    val model = "io.qameta.allure:allure-android-model:${Versions.allure}"
+    val espresso = "io.qameta.allure:allure-espresso:${Versions.allure}"
 }
 
 object EspressoDeps {
