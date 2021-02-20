@@ -17,10 +17,6 @@ object TasksListScreen : BaseScreen<TasksListScreen>() {
     override val layout = R.layout.fragment_task_list
     override val fragment = TaskListFragment::class
 
-    val menuButton = KImageView {
-        isInstanceOf(AppCompatImageButton::class.java)
-    }
-
     val tasksRV = KRecyclerView({ withId(R.id.recyclerview_tasklist_list) }) {
         itemType(::AddTask)
     }
@@ -28,13 +24,5 @@ object TasksListScreen : BaseScreen<TasksListScreen>() {
     class AddTask(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
         val descriptionET = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
         val plusIV = KImageView(parent) { withId(R.id.imageview_itemadd_completed) }
-    }
-
-
-    fun selectMenuItem(itemText: String) {
-        KTextView {
-            withId(com.escodro.navigation.R.id.design_menu_item_text)
-            withText(itemText)
-        }.click()
     }
 }
