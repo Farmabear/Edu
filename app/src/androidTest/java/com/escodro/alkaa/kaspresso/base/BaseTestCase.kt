@@ -8,10 +8,6 @@ import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import com.kaspersky.kaspresso.testcases.core.sections.InitSection
 import com.kaspersky.kaspresso.testcases.core.testcontext.BaseTestContext
-import com.escodro.alkaa.kaspresso.utils.EspressoScreenshot
-import com.escodro.alkaa.kaspresso.utils.interceptors.AllureMapperStepInterceptor
-import com.escodro.alkaa.kaspresso.utils.interceptors.ScreenshotStepInterceptor
-import com.escodro.alkaa.kaspresso.utils.interceptors.ScreenshotTestRunInterceptor
 import com.escodro.alkaa.presentation.MainActivity
 import org.junit.Rule
 
@@ -47,9 +43,6 @@ open class BaseTestCase(builder: Kaspresso.Builder = defaultBuilder) : TestCase(
         val defaultBuilder
             get() = Kaspresso.Builder.simple().apply {
                 flakySafetyParams.timeoutMs = 10_000L
-                stepWatcherInterceptors.add(ScreenshotStepInterceptor(EspressoScreenshot()))
-                stepWatcherInterceptors.add(AllureMapperStepInterceptor())
-                testRunWatcherInterceptors.add(ScreenshotTestRunInterceptor(EspressoScreenshot()))
                 objectBehaviorInterceptors = objectBehaviorInterceptors.filter {
                     it.javaClass != AutoScrollObjectBehaviorInterceptor::class.java
                 }.toMutableList()

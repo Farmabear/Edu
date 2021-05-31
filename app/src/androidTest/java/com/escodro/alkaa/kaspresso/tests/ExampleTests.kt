@@ -1,16 +1,11 @@
 package com.escodro.alkaa.kaspresso.tests
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.LargeTest
 import com.escodro.alkaa.kaspresso.base.BaseTestCase
 import com.escodro.alkaa.kaspresso.screens.MenuScreen
 import com.escodro.alkaa.kaspresso.screens.TasksListScreen
 import com.escodro.alkaa.kaspresso.screens.ToolbarScreen
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@LargeTest
-@RunWith(AndroidJUnit4::class)
 class ExampleTests : BaseTestCase() {
 
     @Test
@@ -27,7 +22,7 @@ class ExampleTests : BaseTestCase() {
 
             step("Открываем меню") {
                 ToolbarScreen {
-                    menuButton.click()
+                    menuButton.isVisible()
                 }
             }
 

@@ -62,7 +62,6 @@ object Deps {
     val test = TestDeps
     val quality = QualityDeps
     val gradle = GradleDeps
-    val allure = AllureDeps
 }
 
 object AndroidDeps {
@@ -123,14 +122,7 @@ object TestDeps {
     val arch = "androidx.arch.core:core-testing:${Versions.testArch}"
     val lifecycle = "androidx.arch.core:core-testing:${Versions.testArch}"
     val espresso = EspressoDeps
-    val allure = AllureDeps
     val kaspresso = "com.kaspersky.android-components:kaspresso:${Versions.kaspresso}"
-}
-
-object AllureDeps {
-    val common = "io.qameta.allure:allure-android-commons:${Versions.allure}"
-    val model = "io.qameta.allure:allure-android-model:${Versions.allure}"
-    val espresso = "io.qameta.allure:allure-espresso:${Versions.allure}"
 }
 
 object EspressoDeps {

@@ -19,10 +19,16 @@ object TasksListScreen : BaseScreen<TasksListScreen>() {
 
     val tasksRV = KRecyclerView({ withId(R.id.recyclerview_tasklist_list) }) {
         itemType(::AddTask)
+        itemType(::AddTask2)
     }
 
     class AddTask(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
         val descriptionET = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
         val plusIV = KImageView(parent) { withId(R.id.imageview_itemadd_completed) }
+    }
+
+    class AddTask2(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
+        val descriptionET2 = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
+        val plusIV2 = KImageView(parent) { withId(R.id.imageview_itemadd_completed) }
     }
 }
