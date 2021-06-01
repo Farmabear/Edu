@@ -12,11 +12,21 @@ class AddTaskScenario(
         TasksListScreen {
             tasksRV.childAt<TasksListScreen.AddTask>(0) {
                 step("Setting Task with name \"$text\"") {
-
-                    descriptionET.typeText(text)
+                    TasksListScreen {
+                        tasksRV.childAt<TasksListScreen.AddTask>(0) {
+                            descriptionET.typeText(text)
+                        }
+                        device.uiDevice.click(950, 1700)
+                    }
                 }
-                device.uiDevice.pressEnter()
+                step("Проверям что отрисовалось") {
+                            TasksListScreen {
+                                tasksRV.childAt<TasksListScreen.Task>(0){
+                                    taskName.hasText(text)
+                                }
+                            }
+                        }
+                    }
             }
         }
     }
-}

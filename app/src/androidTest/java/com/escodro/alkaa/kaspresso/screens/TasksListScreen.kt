@@ -1,9 +1,8 @@
 package com.escodro.alkaa.kaspresso.screens
 
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageButton
+import com.agoda.kakao.check.KCheckBox
 import com.agoda.kakao.edit.KEditText
-import com.agoda.kakao.image.KImageView
 import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.text.KTextView
@@ -19,16 +18,15 @@ object TasksListScreen : BaseScreen<TasksListScreen>() {
 
     val tasksRV = KRecyclerView({ withId(R.id.recyclerview_tasklist_list) }) {
         itemType(::AddTask)
-        itemType(::AddTask2)
+        itemType(::Task)
     }
 
     class AddTask(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
         val descriptionET = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
-        val plusIV = KImageView(parent) { withId(R.id.imageview_itemadd_completed) }
     }
 
-    class AddTask2(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
-        val descriptionET2 = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
-        val plusIV2 = KImageView(parent) { withId(R.id.imageview_itemadd_completed) }
+    class Task (parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
+        val taskName = KTextView(parent) { withId(R.id.textview_itemtask_description) }
+        val taskCheckBox = KCheckBox(parent){withId(R.id.checkbox_itemtask_completed)}
     }
 }

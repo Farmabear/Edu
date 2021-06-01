@@ -7,7 +7,7 @@ import com.escodro.alkaa.kaspresso.screens.TaskDetailsScreen
 import com.escodro.alkaa.kaspresso.screens.TasksListScreen
 import org.junit.Test
 
-class Test2 : BaseTestCase() {
+class Test3 : BaseTestCase() {
 /*
 
 */
@@ -17,7 +17,7 @@ class Test2 : BaseTestCase() {
         launch().run {
 
 
-        scenario(AddTaskScenario("test2"))
+        scenario(AddTaskScenario("test3"))
 
 
             step("открываем таску"){
@@ -27,11 +27,19 @@ class Test2 : BaseTestCase() {
 
             }
 
-            step("меняем имя"){
+            step("меняем имя и назад в корень "){
                 TaskDetailsScreen {
                     taskname.clearText()
                     taskname.typeText("new")
                 }
+                // device.uiDevice.pressBack() /*not working*/
+                device.uiDevice.click(50, 120)
+            }
+            step ("тмечаем таску как готовую"){
+                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0){
+                    taskCheckBox.click()
+                }
+
             }
 
         }

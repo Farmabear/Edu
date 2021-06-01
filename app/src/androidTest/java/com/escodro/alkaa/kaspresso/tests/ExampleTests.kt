@@ -11,14 +11,14 @@ class ExampleTests : BaseTestCase() {
     @Test
     fun exampleKaspressoTest() {
         launch().run {
-            step("Добавляем таску") {
-                TasksListScreen {
-                    tasksRV.childAt<TasksListScreen.AddTask>(0) {
-                        descriptionET.typeText("Hello")
-                    }
-                    device.uiDevice.pressEnter()
-                }
-            }
+//            step("Добавляем таску") {
+//                TasksListScreen {
+//                    tasksRV.childAt<TasksListScreen.AddTask>(0) {
+//                        descriptionET.typeText("Hello")
+//                    }
+//                    device.uiDevice.click(950, 1700)
+//                }
+//            }
 
             step("Открываем меню") {
                 ToolbarScreen {
