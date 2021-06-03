@@ -31,6 +31,8 @@ class Test2 : BaseTestCase() {
                 TaskDetailsScreen {
                     taskname.clearText()
                     taskname.typeText("new")
+                    //replacetext
+                    taskname.hasText("new")
                 }
             }
 

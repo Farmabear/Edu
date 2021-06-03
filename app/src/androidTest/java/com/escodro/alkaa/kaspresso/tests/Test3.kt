@@ -1,10 +1,16 @@
 package com.escodro.alkaa.kaspresso.tests
 
 
+import androidx.appcompat.widget.AppCompatImageButton
+import com.agoda.kakao.image.KImageView
+import com.agoda.kakao.screen.Screen
+import com.agoda.kakao.text.KButton
+import com.escodro.alkaa.R
 import com.escodro.alkaa.kaspresso.base.BaseTestCase
 import com.escodro.alkaa.kaspresso.scenario.AddTaskScenario
 import com.escodro.alkaa.kaspresso.screens.TaskDetailsScreen
 import com.escodro.alkaa.kaspresso.screens.TasksListScreen
+import com.escodro.alkaa.kaspresso.screens.ToolbarScreen
 import org.junit.Test
 
 class Test3 : BaseTestCase() {
@@ -17,29 +23,35 @@ class Test3 : BaseTestCase() {
         launch().run {
 
 
-        scenario(AddTaskScenario("test3"))
+            scenario(AddTaskScenario("test3"))
 
 
-            step("открываем таску"){
-                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0){
+            step("открываем таску") {
+                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0) {
                     click()
                 }
 
             }
 
-            step("меняем имя и назад в корень "){
+            step("меняем имя и назад в корень ") {
                 TaskDetailsScreen {
                     taskname.clearText()
                     taskname.typeText("new")
                 }
-                // device.uiDevice.pressBack() /*not working*/
-                device.uiDevice.click(50, 120)
+                ToolbarScreen {
+//                    closeSoftKeyboard()
+//                    pressBack()
+                    back.click()
+                }
+//                 device.uiDevice.pressBack() /*not working*/
+//                Screen.idle(500)
+//                 device.uiDevice.pressBack() /*not working*/
+//                device.uiDevice.click(50, 120)
             }
-            step ("тмечаем таску как готовую"){
-                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0){
+            step("тмечаем таску как готовую") {
+                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0) {
                     taskCheckBox.click()
                 }
-
             }
 
         }
