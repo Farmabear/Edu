@@ -92,4 +92,5 @@ dependencies {
     androidTestImplementation Deps.test.uiAutomator
     androidTestImplementation Deps.test.kaspresso
     androidTestUtil Deps.test.orchestrator
+
 }

@@ -43,7 +43,7 @@ object Versions {
     const val testRoom = "2.1.0"
     const val testArch = "2.1.0"
     const val allure = "2.0.3"
-    const val kaspresso = "1.2.0"
+    const val kaspresso = "1.1.0"
 
     const val buildGradle = "3.6.0"
 

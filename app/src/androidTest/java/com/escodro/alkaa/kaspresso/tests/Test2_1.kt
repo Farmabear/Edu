@@ -1,13 +1,14 @@
 package com.escodro.alkaa.kaspresso.tests
 
 
+import androidx.test.espresso.action.ViewActions.click
 import com.escodro.alkaa.kaspresso.base.BaseTestCase
 import com.escodro.alkaa.kaspresso.scenario.AddTaskScenario
 import com.escodro.alkaa.kaspresso.screens.TaskDetailsScreen
 import com.escodro.alkaa.kaspresso.screens.TasksListScreen
 import org.junit.Test
 
-class Test2 : BaseTestCase() {
+class `Test2_1` : BaseTestCase() {
 /*
 
 */
@@ -21,9 +22,11 @@ class Test2 : BaseTestCase() {
 
 
             step("открываем таску"){
-                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0){
+                TasksListScreen {
+                    tasksRV.childWith<TasksListScreen.Task> {withText("test2")}
                     click()
                 }
+
 
             }
 
