@@ -19,7 +19,7 @@ class Test3 : BaseTestCase() {
 */
 
     @Test
-    fun test1() {
+    fun test3() {
         launch().run {
 
 

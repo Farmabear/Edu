@@ -12,7 +12,7 @@ import com.escodro.alkaa.kaspresso.base.BaseScreen
 import org.hamcrest.Matcher
 
 
-object CategoriesScreen : BaseScreen<MenuScreen>() {
+object CategoriesScreen : BaseScreen<CategoriesScreen>() {
     override val layout = 0
     override val fragment = Fragment::class
 
