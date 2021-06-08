@@ -3,6 +3,7 @@ package com.escodro.alkaa.kaspresso.tests
 
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.test.espresso.action.ViewActions.click
+import com.agoda.kakao.common.views.KView
 import com.agoda.kakao.image.KImageView
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.text.KButton
@@ -25,7 +26,7 @@ class Test4 : BaseTestCase() {
 
 
             step("Вызываем Меню") {
-             scenario(AddCategoryScenario("AutoGreenCat", "Green"))
+                scenario(AddCategoryScenario("AutoGreenCat", "Green"))
             }
 
             step("Создаем таску и проваливаемся в нее") {
@@ -33,13 +34,16 @@ class Test4 : BaseTestCase() {
                 TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0) {
                     click()
                 }
-            step("Присваиваем созданную категорию"){
-                TaskDetailsScreen{
-                    taskGroup.scrollToEnd()
-                    taskGroup.click()
-                }
+                step("Присваиваем созданную категорию") {
+                    TaskDetailsScreen {
+                        KView {
+                            isDescendantOfA { withId(R.id.scrollview_taskdetail_category) }
+                            withText("AutoGreenCat")
+                        }.click()
+                        Screen.idle(5000)
+                    }
 
-            }
+                }
 
             }
         }

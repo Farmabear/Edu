@@ -6,6 +6,7 @@ import com.escodro.alkaa.kaspresso.getText
 import com.escodro.alkaa.kaspresso.scenario.AddTaskScenario
 import com.escodro.alkaa.kaspresso.screens.TaskDetailsScreen
 import com.escodro.alkaa.kaspresso.screens.TasksListScreen
+import org.junit.Assert
 import org.junit.Test
 
 class Test2_2 : BaseTestCase() {
@@ -15,7 +16,12 @@ class Test2_2 : BaseTestCase() {
 
     @Test
     fun test2_2() {
-        val list = listOf("fds", "dsf", "dsfffffffffffffffffffffffffffffffdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffffffsdfffffffffff", "@sdfdsf")
+        val list = listOf(
+                "fds",
+                "dsf",
+                "dsfffffffffffffffffffffffffffffffdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffffffsdfffffffffff",
+                "@sdfdsf"
+        )
 
         launch().run {
 
@@ -32,20 +38,13 @@ class Test2_2 : BaseTestCase() {
 
             step("Прогон списка занчений") {
                 TaskDetailsScreen {
-
-
-                        list.forEach {
-                            taskname.replaceText(it)
-                            if (getText(taskname)!=it) {
-                                taskname.replaceText("broken at $it")
-                                return@forEach
-                            }
-
-
+                    list.forEach {
+                        taskname {
+                            replaceText(it)
+                            hasText(it)
                         }
-
+                    }
                 }
-
             }
         }
     }

@@ -12,23 +12,18 @@ class Test1 : BaseTestCase() {
     @Test
     fun test1() {
         launch().run {
-            step("Создаем таску") {
-                TasksListScreen {
-                    tasksRV.childAt<TasksListScreen.AddTask>(0) {
-                        descriptionET.typeText("Hello")
+            TasksListScreen {
+                step("Setting Task with name test") {
 
-                        //поработать с childwith
-                    }
-                    device.uiDevice.pressEnter() /*not working*/
-//                    device.uiDevice.click(950, 1700)
-                    device.keyboard.sendEvent(KeyEvent.KEYCODE_ENTER)
+                    descriptionET.typeText("test")
+                    device.uiDevice.click(950, 1700)
                 }
-            }
 
-            step("Проверям что отрисовалось") {
-                TasksListScreen {
-                    tasksRV.childAt<TasksListScreen.Task>(0) {
-                        taskName.hasText("Hello")
+                step("Проверям что отрисовалось") {
+                    TasksListScreen {
+                        tasksRV {
+                            hasDescendant { withText("test") }
+                        }
                     }
                 }
             }

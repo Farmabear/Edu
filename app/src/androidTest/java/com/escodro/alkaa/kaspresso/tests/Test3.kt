@@ -39,14 +39,8 @@ class Test3 : BaseTestCase() {
                     taskname.typeText("new")
                 }
                 ToolbarScreen {
-//                    closeSoftKeyboard()
-//                    pressBack()
                     back.click()
                 }
-//                 device.uiDevice.pressBack() /*not working*/
-//                Screen.idle(500)
-//                 device.uiDevice.pressBack() /*not working*/
-//                device.uiDevice.click(50, 120)
             }
             step("тмечаем таску как готовую") {
                 TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0) {
