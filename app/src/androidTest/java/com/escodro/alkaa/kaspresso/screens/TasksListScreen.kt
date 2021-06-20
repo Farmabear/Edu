@@ -18,18 +18,18 @@ object TasksListScreen : BaseScreen<TasksListScreen>() {
     override val fragment = TaskListFragment::class
 
     val tasksRV = KRecyclerView({ withId(R.id.recyclerview_tasklist_list) }) {
- //       itemType(::AddTask)
+        itemType(::AddTask)
         itemType(::Task)
     }
-      val descriptionET = KEditText() { withId(R.id.edittext_itemadd_description) }
+    val descriptionET = KEditText() { withId(R.id.edittext_itemadd_description) }
 
-//    class AddTask(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
-//        val descriptionET = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
-//    }
+    class AddTask(parent: Matcher<View>) : KRecyclerItem<AddTask>(parent) {
+        val descriptionET = KEditText(parent) { withId(R.id.edittext_itemadd_description) }
+    }
 
-    class Task (parent: Matcher<View>) : KRecyclerItem<Task>(parent) {
+    class Task(parent: Matcher<View>) : KRecyclerItem<Task>(parent) {
         val taskName = KTextView(parent) { withId(R.id.textview_itemtask_description) }
-        val taskCheckBox = KCheckBox(parent){withId(R.id.checkbox_itemtask_completed)}
-        val taskColor = KView(parent){withId(R.id.view_itemtask_color)}
+        val taskCheckBox = KCheckBox(parent) { withId(R.id.checkbox_itemtask_completed) }
+        val taskColor = KView(parent) { withId(R.id.view_itemtask_color) }
     }
 }

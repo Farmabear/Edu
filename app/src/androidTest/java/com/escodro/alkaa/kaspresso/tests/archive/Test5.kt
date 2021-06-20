@@ -1,4 +1,4 @@
-package com.escodro.alkaa.kaspresso.tests
+package com.escodro.alkaa.kaspresso.tests.archive
 
 
 import com.agoda.kakao.common.views.KView
@@ -42,10 +42,7 @@ class Test5 : BaseTestCase() {
                         timePicker.setTime(12, 22)
                         okButton.click()
                     }
-                    KView {
-                        isDescendantOfA { withId(R.id.fragment_taskdetail_alarm) }
-                        withoutText("Add an alarm")
-                    }.isDisplayed()
+                    alarmDate.isInvisible()
                 }
 
 

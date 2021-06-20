@@ -1,5 +1,7 @@
 package com.escodro.alkaa.kaspresso.scenario
 
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.EspressoKey
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
@@ -21,53 +23,62 @@ class AddTaskScenario(
     override val steps: TestContext<Unit>.() -> Unit = {
         TasksListScreen {
             step("Setting Task with name \"$text\"") {
-                //descriptionET.isVisible()
-                descriptionET.scrollTo()
-                descriptionET.typeText(text)
-                device.uiDevice.click(950, 1700)
-            }
 
-            step("Проверям что отрисовалось") {
-                TasksListScreen {
-                    tasksRV {
-                        hasDescendant { withText("$text") }
+                //   descriptionET.typeText(text)
+                Espresso.onView(isRoot()).perform(ViewActions.swipeUp())
+                tasksRV.lastChild<TasksListScreen.AddTask> {
+                    descriptionET {
+                        click()
+                        typeText(text)
                     }
+
+                    device.uiDevice.click(950, 1700)
                 }
-            }
 
-            if (categ != null) {
-                step("проваливаемся в таску\"$text\"") {
-
+                step("Проверям что отрисовалось") {
                     TasksListScreen {
-                        tasksRV.childWith<TasksListScreen.Task> {
-                            withDescendant {
-                                withText("$text")
-                            }
-                        } perform {
-                            taskName {
+                        tasksRV {
+                            hasDescendant {
+                                withText("$text") }
                                 isDisplayed()
-                                hasText("$text")
-                                click()
-                            }
                         }
                     }
                 }
 
-                step("Присваиваем категорию \"$categ\"") {
+                if (categ != null) {
+                    step("проваливаемся в таску\"$text\"") {
 
-                    TaskDetailsScreen {
-                        KView {
-                            isDescendantOfA { withId(R.id.scrollview_taskdetail_category) }
-                            withText("$categ")
-                        }.click()
-                        // Screen.idle(5000)
+                        TasksListScreen {
+                            tasksRV.childWith<TasksListScreen.Task> {
+                                withDescendant {
+                                    withText("$text")
+                                }
+                            } perform {
+                                taskName {
+                                    isDisplayed()
+                                    hasText("$text")
+                                    click()
+                                }
+                            }
+                        }
                     }
-                }
 
-                step("возвращаемся в корень") {
+                    step("Присваиваем категорию \"$categ\"") {
 
-                    ToolbarScreen {
-                        back.click()
+                        TaskDetailsScreen {
+                            KView {
+                                isDescendantOfA { withId(R.id.scrollview_taskdetail_category) }
+                                withText("$categ")
+                            }.click()
+                            // Screen.idle(5000)
+                        }
+                    }
+
+                    step("возвращаемся в корень") {
+
+                        ToolbarScreen {
+                            back.click()
+                        }
                     }
                 }
             }

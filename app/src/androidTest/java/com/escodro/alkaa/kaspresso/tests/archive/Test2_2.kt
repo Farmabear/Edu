@@ -1,12 +1,10 @@
-package com.escodro.alkaa.kaspresso.tests
+package com.escodro.alkaa.kaspresso.tests.archive
 
 
 import com.escodro.alkaa.kaspresso.base.BaseTestCase
-import com.escodro.alkaa.kaspresso.getText
 import com.escodro.alkaa.kaspresso.scenario.AddTaskScenario
 import com.escodro.alkaa.kaspresso.screens.TaskDetailsScreen
 import com.escodro.alkaa.kaspresso.screens.TasksListScreen
-import org.junit.Assert
 import org.junit.Test
 
 class Test2_2 : BaseTestCase() {

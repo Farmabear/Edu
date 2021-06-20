@@ -1,4 +1,4 @@
-package com.escodro.alkaa.kaspresso.tests
+package com.escodro.alkaa.kaspresso.tests.archive
 
 
 import androidx.appcompat.widget.AppCompatImageButton
@@ -33,7 +33,9 @@ class Test4 : BaseTestCase() {
                 scenario(AddTaskScenario("Green"))
                 TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0) {
                     click()
+                    // testLogger.d()
                 }
+
                 step("Присваиваем созданную категорию") {
                     TaskDetailsScreen {
                         KView {
@@ -42,9 +44,7 @@ class Test4 : BaseTestCase() {
                         }.click()
                         Screen.idle(5000)
                     }
-
                 }
-
             }
         }
     }
