@@ -17,18 +17,25 @@ class TaskCategoriesTests : BaseTestCase() {
      * тест на создание и присвоении категории таске
      */
     @Test
-    fun AssignCategoryAfterCreation() {
+    fun assignCategoryAfterCreation() {
         launch().run {
+            val testColor = "green"
+            val name = testColor + "task"
 
-            step("Вызываем Меню") {
-                scenario(AddCategoryScenario("AutoGreenCat", "Green"))
-            }
+            scenario(AddCategoryScenario("$testColor cat", testColor))
+            scenario(AddTaskScenario(name))
 
-            step("Создаем таску и проваливаемся в нее") {
-                scenario(AddTaskScenario("Green"))
-                TasksListScreen.tasksRV.childAt<TasksListScreen.Task>(0) {
-                    click()
-                    // testLogger.d()
+            step("Проверяем в созданной таске текст = '$name' и открываем её") {
+                TasksListScreen {
+                    tasksRV {
+                        firstChild<TasksListScreen.Task> {
+                            taskName {
+                                hasText(name)
+                                isDisplayed()
+                            }
+                            click()
+                        }
+                    }
                 }
             }
 
@@ -36,9 +43,24 @@ class TaskCategoriesTests : BaseTestCase() {
                 TaskDetailsScreen {
                     KView {
                         isDescendantOfA { withId(R.id.scrollview_taskdetail_category) }
-                        withText("AutoGreenCat")
-                    }.click()
-                    //Screen.idle(5000)
+                        withText("$testColor cat")
+                    }.perform {
+                        click()
+                    }
+                }
+            }
+
+            step("Возвращаемся назад и проверяем цвет бейджа и текст") {
+                ToolbarScreen {
+                    back.click()
+                }
+                TasksListScreen {
+                    tasksRV {
+                        firstChild<TasksListScreen.Task> {
+                            taskColor.hasBackgroundColor(R.color.green)
+                            taskName.hasText(name)
+                        }
+                    }
                 }
             }
         }
@@ -47,46 +69,55 @@ class TaskCategoriesTests : BaseTestCase() {
     /**
      * @see </src/androidTest/java/com/escodro/alkaa/kaspresso/tests/Test6.kt">
      * Бывший test6:
-     * тест на создание 10 тасок (7 простых и 3 в категории), создание категории
+     * тест на создание 10 тасок (2 простых и 3 в категории), создание категории
      * и проверка фильтрации по категории
      */
     @Test
     fun filtrationOfCreatedTasks() {
         launch().run {
+            val numOfSimple = 3
+            val numOfCat = 3
+            val catName = "Pink"
+            val catColor = "pink"
+            val colorTaskName = "\"$catName\"task"
 
-            step("Создаем 7 простых тасок") {
-                repeat(5) { scenario(AddTaskScenario("Green")) }
+            step("Создаем $numOfSimple простых тасок Без категорий") {
+                repeat(numOfSimple) { scenario(AddTaskScenario("Simple")) }
             }
 
-            step("Cоздаем категорию Pink") {
-                scenario(AddCategoryScenario("pink", "pink"))
+            step("Cоздаем категорию с именем $catName и цветом $catColor") {
+                scenario(AddCategoryScenario(catName, catColor))
             }
 
-            step("Cоздаем 3 таски в категории Pink") {
-                for (i in 1..3) {
-                    scenario(AddTaskScenario("pinktask$i", "pink"))
+            step("Cоздаем $numOfCat таски c шаблоном имени $colorTaskName  в категории $catName") {
+                for (i in 1..numOfCat) {
+                    scenario(AddTaskScenario("$colorTaskName$i", catName))
                 }
             }
 
-            step("выбираем категорию pink") {
+            step("Вызываем боковое меню и выбираем категорию $catName ") {
                 ToolbarScreen {
                     back.click()
                 }
                 MenuScreen {
-                    selectMenuItem("pink")
+                    selectMenuItem(catName)
                 }
             }
 
-            step("Проверям что таски содержат pinktask ") {
+            step("Проверям, что таски содержат $colorTaskName и имеет цвет бейджа категории") {
                 TasksListScreen {
                     for (position in 0 until tasksRV.getSize() - 1) {
                         tasksRV.childAt<TasksListScreen.Task>(position) {
                             taskColor.hasBackgroundColor(R.color.pink)
-                            taskName.containsText("pinktask")
+                            taskName.containsText(colorTaskName)
                         }
                     }
                 }
             }
+
+//            KeyboardUiScreen{
+//                addButton            //доразобратся с вызовом элемента другого приложения (путь искаьт через UI automator)
+//            }
         }
     }
 }

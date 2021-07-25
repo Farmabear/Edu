@@ -26,7 +26,7 @@ import timber.log.Timber
 /**
  * [Fragment] responsible to show the Task details.
  */
-internal class TaskDetailFragment : Fragment() {
+class TaskDetailFragment : Fragment() {
 
     private val viewModel: TaskDetailViewModel by viewModel()
 
