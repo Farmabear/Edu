@@ -25,12 +25,23 @@ object Versions {
     const val testRunner = "1.1.1"
     const val testCore = "1.1.0"
     const val testMockk = "1.9.3"
-    const val testUiAutomator = "2.2.0"
+
     const val testJunitExt = "1.1.0"
     const val testRoom = "2.1.0"
     const val barista = "3.7.0"
 
+    //мое
+    const val kaspresso = "1.3.0"
+    const val testUiAutomator = "2.2.0"
+    const val testEspressoCore = "3.1.1"
+    const val testEspressoIntents = "3.1.1"
+    const val testEspressoContrib = "3.1.0-alpha4"
+    const val testRules = "1.1.1"
+
     const val espresso = "3.3.0"
+    const val allure = "2.0.3"
+    const val orchestrator = "1.3.0"
+
 
     const val compose = "1.0.0"
     const val composeNav = "2.4.0-alpha01"
@@ -104,6 +115,27 @@ object TestDeps {
     val mockk = "io.mockk:mockk:${Versions.testMockk}"
     val room = "androidx.room:room-testing:${Versions.testRoom}"
     val barista = "com.schibsted.spain:barista:${Versions.espresso}"
+
+    //мое
+    val rules = "androidx.test:rules:${Versions.testRules}"
+    val espresso = EspressoDeps
+    val allure = AllureDeps
+    val kaspresso = "com.kaspersky.android-components:kaspresso:${Versions.kaspresso}"
+    val orchestrator = "androidx.test:orchestrator:${Versions.orchestrator}"
+
+
+}
+//почему эспрессо вынесен вне блока TestDeps
+object EspressoDeps {
+    val core = "androidx.test.espresso:espresso-core:${Versions.testEspressoCore}"
+    val intents = "androidx.test.espresso:espresso-intents:${Versions.testEspressoIntents}"
+    val contrib = "androidx.test.espresso:espresso-contrib:${Versions.testEspressoContrib}"
+}
+//почему аллюр вынесен вне блока TestDeps
+object AllureDeps {
+    val common = "io.qameta.allure:allure-android-commons:${Versions.allure}"
+    val model = "io.qameta.allure:allure-android-model:${Versions.allure}"
+    val espresso = "io.qameta.allure:allure-espresso:${Versions.allure}"
 }
 
 object QualityDeps {

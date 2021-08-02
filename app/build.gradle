@@ -12,6 +12,8 @@ android {
         applicationId "com.escodro.alkaa"
         versionCode Releases.versionCode
         versionName Releases.versionName
+        testInstrumentationRunner = "io.qameta.allure.espresso.AllureAndroidRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
     }
 
     buildTypes {
@@ -30,6 +32,9 @@ android {
         lintConfig file("${rootDir}/config/filters/lint.xml")
         htmlOutput file("${buildDir}/reports/lint.html")
     }
+//    androidExtensions {
+//        experimental = true
+//    }//нужно ли ?
 
     kapt {
         javacOptions {
@@ -70,4 +75,21 @@ dependencies {
     implementation Deps.compose.activity
     implementation Deps.android.playCore
     implementation Deps.koin.android
+
+    //все что ниже нужно посторочно разобрать
+    testImplementation Deps.test.junit
+    androidTestImplementation Deps.test.runner
+    androidTestImplementation Deps.test.rules
+    androidTestImplementation Deps.test.core
+    androidTestImplementation Deps.test.espresso.core
+    androidTestImplementation Deps.test.espresso.intents
+    androidTestImplementation Deps.test.espresso.contrib
+    androidTestImplementation Deps.test.junitExt
+    androidTestImplementation Deps.test.uiAutomator
+    androidTestImplementation Deps.test.allure.common
+    androidTestImplementation Deps.test.allure.model
+    androidTestImplementation Deps.test.allure.espresso
+    androidTestImplementation Deps.test.kaspresso
+    androidTestUtil Deps.test.orchestrator
 }
+
